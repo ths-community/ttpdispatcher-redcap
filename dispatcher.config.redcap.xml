@@ -1,0 +1,1470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.icmvc.ttp.dispatcher.common.config.DispatcherConfig autoUpgrade="true" release="V_2023_1">
+  <psnConfig>
+    <psnWorkflows>
+      <entry>
+        <string>COMDIS.newPatient</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>source</domain>
+                <sourceValue>MPIDTO_FIRSTMPIID</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>project.requestPsnByMpi</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>source</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>test.getStudyPsnWithMpiid</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>source</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>COMDIS.Notification.SourceIdToTargetId</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>source</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>COMDIS.getPatientByIdentifier.PSN</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>RESOLVE</action>
+                <domain>source</domain>
+                <sourceValue>PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>RESOLVE</action>
+                <domain>parent</domain>
+                <prefixRegex>^([a-zA-Z0-9]*_{1}).*</prefixRegex>
+                <sourceValue>PREVIOUS_ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_ORIGINAL_VALUE</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>checkPatient</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET</action>
+                <domain>source</domain>
+                <sourceValue>MPIDTO_FIRSTMPIID</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>project.forschungsanfrage</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>RESOLVE</action>
+                <domain>source</domain>
+                <prefixRegex/>
+                <sourceValue>PSN</sourceValue>
+                <domainPatternForValueDeletion/>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>demo.system.transfer</domain>
+                <prefixRegex/>
+                <sourceValue>PREVIOUS_ORIGINAL_VALUE</sourceValue>
+                <domainPatternForValueDeletion/>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>2</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>newDomain</domain>
+                <prefixRegex/>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <domainPatternForValueDeletion/>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <domainTemplate>Forschungsanfrage</domainTemplate>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>project.getSystemPsnFromMpiid</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>source</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+            <entry>
+              <int>1</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>PREVIOUS_PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>test.getMpiidWithStudyPsn</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>RESOLVE</action>
+                <domain>source</domain>
+                <sourceValue>PSN</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_ORIGINAL_VALUE</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>project.getPsnForLocalIdentifier</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+      <entry>
+        <string>project.getPsnForRelatedIdentifier</string>
+        <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+          <steps>
+            <entry>
+              <int>0</int>
+              <org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+                <action>GET_OR_GENERATE</action>
+                <domain>target</domain>
+                <sourceValue>ORIGINAL_VALUE</sourceValue>
+                <updateFirstMPIID>false</updateFirstMPIID>
+              </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowStep>
+            </entry>
+          </steps>
+          <mappings/>
+          <returnValue>LAST_PSN</returnValue>
+          <fireStepEvents>false</fireStepEvents>
+        </org.icmvc.ttp.dispatcher.common.config.psn.PsnWorkflowConfig>
+      </entry>
+    </psnWorkflows>
+    <psnDomainTemplates>
+      <entry>
+        <string>Forschungsanfrage</string>
+        <psnDomainTemplate>
+          <alphabet>org.emau.icmvc.ganimed.ttp.psn.alphabets.Numbers</alphabet>
+          <checkDigitClass>org.emau.icmvc.ganimed.ttp.psn.generator.Verhoeff</checkDigitClass>
+          <domainName/>
+          <propertiesOgnl>'PSN_PREFIX='+getDomainName(false)+'_;PSN_LENGTH=10'</propertiesOgnl>
+          <namePrefix></namePrefix>
+          <generateAlias>true</generateAlias>
+        </psnDomainTemplate>
+      </entry>
+    </psnDomainTemplates>
+    <psnDomainResolutions>
+      <entry>
+        <string>addPatient</string>
+        <set>
+          <resolution>
+            <identifierType>MPIID</identifierType>
+            <sourceDomainOgnlExpression>'demo.study.'+studyIdIntern</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>'demo.system.'+targetType</targetDomainOgnlExpression>
+          </resolution>
+        </set>
+      </entry>
+      <entry>
+        <string>requestPSN</string>
+        <set>
+          <resolution>
+            <identifierType>LOCAL_IDENTIFIER</identifierType>
+            <sourceDomainOgnlExpression>'demo.study.'+studyIdIntern</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>'demo.system.'+targetType</targetDomainOgnlExpression>
+          </resolution>
+        </set>
+      </entry>
+      <entry>
+        <string>requestPsnByPatient</string>
+        <set>
+          <resolution>
+            <identifierType>MPIID</identifierType>
+            <sourceDomainOgnlExpression>'demo.study.'+studyIdIntern</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>'demo.system.'+targetType</targetDomainOgnlExpression>
+          </resolution>
+          <resolution>
+            <identifierType>LOCAL_IDENTIFIER</identifierType>
+            <sourceDomainOgnlExpression>'not needed'</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>studyIdIntern+'.lid.'+localIdentifierDomain</targetDomainOgnlExpression>
+          </resolution>
+        </set>
+      </entry>
+      <entry>
+        <string>requestPatientByIdentifier</string>
+        <set>
+          <resolution>
+            <identifierType>PATIENT_PSN</identifierType>
+            <sourceDomainOgnlExpression>'demo.system.'+patientIdentifier.domain</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>'demo.study.'+studyIdIntern</targetDomainOgnlExpression>
+          </resolution>
+        </set>
+      </entry>
+      <entry>
+        <string>Notification</string>
+        <set>
+          <resolution>
+            <identifierType>PATIENT_PSN</identifierType>
+            <sourceDomainOgnlExpression>'demo.study.'+studyIdIntern</sourceDomainOgnlExpression>
+            <targetDomainOgnlExpression>targetType</targetDomainOgnlExpression>
+          </resolution>
+        </set>
+      </entry>
+    </psnDomainResolutions>
+  </psnConfig>
+  <eventConfig>
+    <events>
+      <entry>
+        <string>demo.inclusion</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.inclusion</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>addPatient</string>
+            <string>addConsentByPatient</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set"/>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.requestPsn</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.requestPsn</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>requestPsnByPatient</string>
+            <string>requestPSN</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.consentStatus</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.consentStatus</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>getConsentDocument</string>
+            <string>getConsentStatus</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.addPatientIdentifier</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.addPatientIdentifier</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>addPatientIdentifier</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.updateIDAT</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.updateIDAT</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>updateIDAT</string>
+          </allowedFunctions>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.addScan</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.addScan</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>addConsentScan</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.new-consent</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.new-consent</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>addConsentByPatient</string>
+            <string>addConsent</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set"/>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.resolvePsn</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.resolvePsn</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>requestPatientByIdentifier</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.search</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.search</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>searchPatient</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.recruitment</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.recruitment</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>addPatient</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.manage</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.manage</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>updateIDAT</string>
+            <string>addConsentScan</string>
+            <string>addConsentByPatient</string>
+            <string>searchPatient</string>
+            <string>managePatient</string>
+          </allowedFunctions>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+      <entry>
+        <string>demo.transferData</string>
+        <org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+          <name>demo.transferData</name>
+          <order>false</order>
+          <allowedFunctions class="set">
+            <string>queryPolicies</string>
+            <string>queryLegitimationStatus</string>
+            <string>requestPSN</string>
+          </allowedFunctions>
+          <allowedLocalIdentifierDomains class="set">
+            <string>mdat.pat_id</string>
+            <string>mdat.case_id</string>
+          </allowedLocalIdentifierDomains>
+          <resendPatientNotifications>NEVER</resendPatientNotifications>
+          <resendConsentNotifications>NEVER</resendConsentNotifications>
+        </org.icmvc.ttp.dispatcher.common.config.common.DispatcherEvent>
+      </entry>
+    </events>
+    <studyEventConfigs>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.recruitment</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.newPatient</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries/>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier>
+          <patientIdentifierConfig>
+            <displayName>MDAT-Case-ID</displayName>
+            <identifier>
+              <domain>mdat</domain>
+              <name>case_id</name>
+              <type>LOCALIDENTIFIER</type>
+            </identifier>
+          </patientIdentifierConfig>
+          <patientIdentifierConfig>
+            <displayName>MDAT-Patient-ID</displayName>
+            <identifier>
+              <domain>mdat</domain>
+              <name>pat_id</name>
+              <type>LOCALIDENTIFIER</type>
+            </identifier>
+          </patientIdentifierConfig>
+        </allowedPatientIdentifier>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.search</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>project.getSystemPsnFromMpiid</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>IDAT_speichern_verarbeiten</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier>
+          <patientIdentifierConfig>
+            <displayName>MDAT-Case-ID</displayName>
+            <identifier>
+              <domain>mdat</domain>
+              <name>case_id</name>
+              <type>LOCALIDENTIFIER</type>
+            </identifier>
+          </patientIdentifierConfig>
+          <patientIdentifierConfig>
+            <displayName>MDAT-Patient-ID</displayName>
+            <identifier>
+              <domain>mdat</domain>
+              <name>pat_id</name>
+              <type>LOCALIDENTIFIER</type>
+            </identifier>
+          </patientIdentifierConfig>
+        </allowedPatientIdentifier>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.manage</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>project.getSystemPsnFromMpiid</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>IDAT_speichern_verarbeiten</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.addPatientIdentifier</eventName>
+        <studies>
+          <string>*</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>project.getSystemPsnFromMpiid</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries/>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.requestPsn</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.study.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>project.requestPsnByMpi</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.lid.*</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>project.getPsnForLocalIdentifier</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.relatedIdentifier</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>project.getPsnForRelatedIdentifier</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>MDAT_wissenschaftlich_nutzen_EU_DSGVO_konform</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.resolvePsn</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>project.getSystemPsnFromMpiid</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.study.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>MDAT_wissenschaftlich_nutzen_EU_DSGVO_konform</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.updateIDAT</eventName>
+        <studies>
+          <string>*</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.system.*</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>project.getSystemPsnFromMpiid</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>IDAT_speichern_verarbeiten</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.inclusion</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs/>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>IDAT_speichern_verarbeiten</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.new-consent</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries/>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.addScan</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries/>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.consentStatus</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries/>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+      <org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+        <eventName>demo.transferData</eventName>
+        <studies>
+          <string>demo</string>
+        </studies>
+        <psnQueryConfigs>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>demo.study.*</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>FA.*</targetIdTypePattern>
+            <callbackOnly>false</callbackOnly>
+            <psnWorkflow>project.forschungsanfrage</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+          <org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+            <sourceIdTypePattern>demo.system.*</sourceIdTypePattern>
+            <targetIdTypePattern>MPIID</targetIdTypePattern>
+            <callbackOnly>true</callbackOnly>
+            <psnWorkflow>COMDIS.getPatientByIdentifier.PSN</psnWorkflow>
+          </org.icmvc.ttp.dispatcher.common.config.psn.PsnQueryConfig>
+        </psnQueryConfigs>
+        <policyQueries>
+          <org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+            <key>
+              <policyDomain>demo</policyDomain>
+              <policyId>MDAT_wissenschaftlich_nutzen_EU_DSGVO_konform</policyId>
+            </key>
+            <versionRange>[1.0,10.0]</versionRange>
+            <config>
+              <ignoreVersionNumber>true</ignoreVersionNumber>
+              <unknownStateIsConsideredAsDeclined>true</unknownStateIsConsideredAsDeclined>
+              <signerIdMatchingType>AT_LEAST_ONE</signerIdMatchingType>
+            </config>
+          </org.icmvc.ttp.dispatcher.common.config.cm.PolicyQueryConfigItem>
+        </policyQueries>
+        <policyQueryOperator>AND</policyQueryOperator>
+        <allowedPatientIdentifier/>
+      </org.icmvc.ttp.dispatcher.common.config.common.StudyEventConfig>
+    </studyEventConfigs>
+  </eventConfig>
+  <serverConfig>
+    <protocol>${TTP_DISP_EXT_SERVER_PROTOCOL:http}</protocol>
+    <port>${TTP_DISP_EXT_SERVER_PORT:8080}</port>
+    <domain>${TTP_DISP_EXT_SERVER_DOMAIN:localhost}</domain>
+    <contextRoot/>
+    <sessionTimeOut>3600</sessionTimeOut>
+    <apiKeyName>apiKey</apiKeyName>
+    <enableAudit>true</enableAudit>
+    <apiKeyFromOtherSourceFormVariant>false</apiKeyFromOtherSourceFormVariant>
+    <maxCodeRetries>10</maxCodeRetries>
+    <tabletDefaultCameraOgnlExpression>userAgent.contains("Apple") &amp;&amp; userAgent.contains("Chrome") ? 1 : 0</tabletDefaultCameraOgnlExpression>
+    <environment>demo</environment>
+    <styles/>
+    <pdfGenerationMethod>FOP</pdfGenerationMethod>
+    <localHost>http://localhost:8080</localHost>
+    <chromedriverPath/>
+    <tabletPrintOptions>
+      <option>PRINT</option>
+    </tabletPrintOptions>
+    <mailConfigList/>
+  </serverConfig>
+  <sslClientConfigurations>
+    <entry>
+      <string>mdat</string>
+      <org.icmvc.ttp.dispatcher.common.config.common.SSLClientConfiguration>
+        <tlsVersion>1.2</tlsVersion>
+        <verifyHostname>false</verifyHostname>
+      </org.icmvc.ttp.dispatcher.common.config.common.SSLClientConfiguration>
+    </entry>
+  </sslClientConfigurations>
+  <systemConfigurations>
+    <entry>
+      <string>lims</string>
+      <systemConfiguration>
+        <id>lims</id>
+        <redirectUrlParameterNameForId>id</redirectUrlParameterNameForId>
+        <callbackUrlSearchRegex/>
+        <callbackUrlReplaceRegex/>
+        <callbackUrlRewrite>false</callbackUrlRewrite>
+        <defaultLangCode>de</defaultLangCode>
+        <redirectInIFrame>true</redirectInIFrame>
+        <showPsnInForms>true</showPsnInForms>
+        <systemPsnBarcode>NONE</systemPsnBarcode>
+        <limsPsnBarcode>NONE</limsPsnBarcode>
+        <bdmsPsnBarcode>NONE</bdmsPsnBarcode>
+        <type>PLATFORM</type>
+        <label>LIMS</label>
+        <mailContact>
+          <name/>
+          <email/>
+        </mailContact>
+        <telephoneContact>
+          <name/>
+          <phone/>
+        </telephoneContact>
+        <notificationConfiguration/>
+        <customFields/>
+      </systemConfiguration>
+    </entry>
+    <entry>
+      <string>admin</string>
+      <systemConfiguration>
+        <id>admin</id>
+        <redirectUrlParameterNameForId>id</redirectUrlParameterNameForId>
+        <callbackUrlRewrite>false</callbackUrlRewrite>
+        <defaultLangCode>de</defaultLangCode>
+        <showPsnInForms>true</showPsnInForms>
+        <systemPsnBarcode>NONE</systemPsnBarcode>
+        <limsPsnBarcode>NONE</limsPsnBarcode>
+        <bdmsPsnBarcode>NONE</bdmsPsnBarcode>
+        <type>PLATFORM</type>
+        <label>admin</label>
+        <mailContact/>
+        <telephoneContact/>
+        <notificationConfiguration/>
+        <customFields/>
+      </systemConfiguration>
+    </entry>
+    <entry>
+      <string>mdat</string>
+      <systemConfiguration>
+        <id>mdat</id>
+        <redirectUrlParameterNameForId>id</redirectUrlParameterNameForId>
+        <callbackUrlSearchRegex/>
+        <callbackUrlReplaceRegex/>
+        <callbackUrlRewrite>false</callbackUrlRewrite>
+        <defaultLangCode>de</defaultLangCode>
+        <redirectInIFrame>true</redirectInIFrame>
+        <showPsnInForms>true</showPsnInForms>
+        <systemPsnBarcode>NONE</systemPsnBarcode>
+        <limsPsnBarcode>NONE</limsPsnBarcode>
+        <bdmsPsnBarcode>NONE</bdmsPsnBarcode>
+        <type>PLATFORM</type>
+        <label>Datenerfassung</label>
+        <mailContact>
+          <name/>
+          <email/>
+        </mailContact>
+        <telephoneContact>
+          <name/>
+          <phone/>
+        </telephoneContact>
+        <notificationConfiguration/>
+        <customFields/>
+      </systemConfiguration>
+    </entry>
+  </systemConfigurations>
+  <clientAuthenticationConfigurations/>
+  <wfmConfig>
+    <enableNotificationService>true</enableNotificationService>
+    <enableJMX>false</enableJMX>
+    <workflowProperties/>
+    <interceptorEndpoints/>
+  </wfmConfig>
+  <notificationConfig>
+    <formatterList>
+      <notificationFormatter>
+        <formatterId>NEW_CONSENT_TO_JSON</formatterId>
+        <notificationType>NEW_CONSENT</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.NEW_CONSENT.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>UPDATE_CONSENT_TO_JSON</formatterId>
+        <notificationType>UPDATE_CONSENT</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.UPDATE_CONSENT.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>LEGITIMATION_STATUS_TO_JSON</formatterId>
+        <notificationType>LEGITIMATION_STATUS</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.LEGITIMATION_STATUS.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>NEW_CONSENT_TEMPLATE_TO_JSON</formatterId>
+        <notificationType>NEW_CONSENT_TEMPLATE</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.NEW_CONSENT_TEMPLATE.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>NEW_CONSENT_TEMPLATE_VERSION_TO_JSON</formatterId>
+        <notificationType>NEW_CONSENT_TEMPLATE_VERSION</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.NEW_CONSENT_TEMPLATE_VERSION.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>REVOCATION_TO_JSON</formatterId>
+        <notificationType>REVOCATION</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.REVOCATION.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>MERGE_PATIENT_TO_JSON</formatterId>
+        <notificationType>MERGE_PATIENT</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.MERGE_PATIENT.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>REFUSAL_TO_JSON</formatterId>
+        <notificationType>REFUSAL</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.REFUSAL.JSON</workflowEndpoint>
+      </notificationFormatter>
+      <notificationFormatter>
+        <formatterId>NEW_PATIENT_TO_JSON</formatterId>
+        <notificationType>NEW_PATIENT</notificationType>
+        <dataFormat>JSON</dataFormat>
+        <workflowEndpoint>direct:notification.formatter.NEW_PATIENT.JSON</workflowEndpoint>
+      </notificationFormatter>
+    </formatterList>
+    <connectors>
+      <entry>
+        <connectorType>HTTPS_POST</connectorType>
+        <notificationSendConnector connectorType="HTTPS_POST" workflowEndpoint="direct:notification.connector.HTTPS_POST">
+          <parameter/>
+        </notificationSendConnector>
+      </entry>
+      <entry>
+        <connectorType>HTTP_POST</connectorType>
+        <notificationSendConnector connectorType="HTTP_POST" workflowEndpoint="direct:notification.connector.HTTP_POST">
+          <parameter/>
+        </notificationSendConnector>
+      </entry>
+    </connectors>
+    <consumerList>
+      <notificationConsumer>
+        <id>local_mdat</id>
+        <targedIdType>PSN</targedIdType>
+        <targetIdDomain>demo.system.mdat</targetIdDomain>
+        <!-- This URL has to be changed to fit your systems dispatcher location -->
+        <url>http://localhost:8080/ths/rest/test/notification/receive?consumerId=mdat&amp;logMessage=true</url>
+        <dataFormat>JSON</dataFormat>
+        <connectorType>HTTP_POST</connectorType>
+        <externalTargetIdType>PSN</externalTargetIdType>
+        <timeout>3000</timeout>
+        <notificationTypeActivations>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>REVOCATION</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>LEGITIMATION_STATUS</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>NEW_PATIENT</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+        </notificationTypeActivations>
+        <additionalParameter/>
+        <activated>true</activated>
+        <allowedLocalIdentifierDomains class="set"/>
+        <systemConfiguration>mdat</systemConfiguration>
+        <apiKey>admin</apiKey>
+      </notificationConsumer>
+      <notificationConsumer>
+        <id>local_lims</id>
+        <targedIdType>PSN</targedIdType>
+        <targetIdDomain>demo.system.bio</targetIdDomain>
+        <!-- This URL has to be changed to fit your systems dispatcher location -->
+        <url>http://localhost:8080/ths/rest/test/notification/receive?consumerId=lims&amp;logMessage=true</url>
+        <dataFormat>JSON</dataFormat>
+        <connectorType>HTTP_POST</connectorType>
+        <externalTargetIdType>PSN</externalTargetIdType>
+        <timeout>3000</timeout>
+        <notificationTypeActivations>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>NEW_PATIENT</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+        </notificationTypeActivations>
+        <additionalParameter/>
+        <activated>true</activated>
+        <allowedLocalIdentifierDomains class="set"/>
+        <systemConfiguration>lims</systemConfiguration>
+        <apiKey>lims</apiKey>
+      </notificationConsumer>
+      <notificationConsumer>
+        <id>redcap</id>
+        <targedIdType>PSN</targedIdType>
+        <targetIdDomain>demo.system.mdat</targetIdDomain>
+        <!-- This URL has to be changed to fit your systems redcap location and corresponding project id (PID)-->
+        <url>http://localhost/redcap/api/?type=module&amp;prefix=redcap-module-ttp-dispatcher&amp;page=notification_consumer&amp;pid=1&amp;NOAUTH</url>
+        <dataFormat>JSON</dataFormat>
+        <connectorType>HTTP_POST</connectorType>
+        <externalTargetIdType>PSN</externalTargetIdType>
+        <timeout>3000</timeout>
+        <notificationTypeActivations>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>REVOCATION</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>LEGITIMATION_STATUS</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+          <org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+            <notificationType>NEW_PATIENT</notificationType>
+            <studyFilterMode>EXCLUDE</studyFilterMode>
+            <studyFilter/>
+            <active>true</active>
+            <sendEventStatusTrigger>ALWAYS</sendEventStatusTrigger>
+            <eventFilter/>
+            <sendDelay>0</sendDelay>
+          </org.icmvc.ttp.dispatcher.common.config.notification.NotificationTypeActivation>
+        </notificationTypeActivations>
+        <additionalParameter/>
+        <activated>true</activated>
+        <allowedLocalIdentifierDomains class="set"/>
+        <systemConfiguration>mdat</systemConfiguration>
+        <apiKey>admin</apiKey>
+      </notificationConsumer>
+    </consumerList>
+    <targetIdConverterList>
+      <targetIdConverter identifierType="PSN" workflowEndpoint="direct:notification.idConverter.MPI.PSN">
+        <identifierDomains>
+          <string>demo.system.mdat</string>
+          <string>demo.system.bio</string>
+        </identifierDomains>
+      </targetIdConverter>
+      <targetIdConverter identifierType="LOCAL_IDENTIFIER" workflowEndpoint="direct:notification.idConverter.MPI.LocalIdentifier">
+        <identifierDomains/>
+      </targetIdConverter>
+    </targetIdConverterList>
+    <serviceConfig>
+      <maxRedeliveryAttempts>5</maxRedeliveryAttempts>
+      <timerIntervalForSending>5</timerIntervalForSending>
+      <timerIntervalForReSending>45</timerIntervalForReSending>
+    </serviceConfig>
+    <interceptorEndpoints/>
+    <customNotificationTypes/>
+  </notificationConfig>
+  <functionConfig>
+    <configs/>
+  </functionConfig>
+  <idatConfig>
+    <idatParameter>
+      <parameter mandatory="true">person.firstName</parameter>
+      <parameter mandatory="true">person.lastName</parameter>
+      <parameter mandatory="true">person.gender</parameter>
+      <parameter mandatory="true">person.birthdate</parameter>
+      <parameter mandatory="false">person.birthplace</parameter>
+    </idatParameter>
+    <defaultConfigurationDomain>demo</defaultConfigurationDomain>
+  </idatConfig>
+  <interfaceConfig>
+    <addPatientActionMaxListSize>0</addPatientActionMaxListSize>
+    <requestPsnActionMaxListSize>0</requestPsnActionMaxListSize>
+    <requestPsnByPatientActionMaxListSize>0</requestPsnByPatientActionMaxListSize>
+    <queryPoliciesActionMaxListSize>0</queryPoliciesActionMaxListSize>
+    <formMaxRequestPerToken>1</formMaxRequestPerToken>
+    <validateJSON>false</validateJSON>
+  </interfaceConfig>
+  <studyConfigs>
+    <entry>
+      <string>demo</string>
+      <org.icmvc.ttp.dispatcher.common.config.study.StudyConfig>
+        <id>demo</id>
+        <consentSignerIdTypes class="set"/>
+        <vConfig>
+          <minAge>0</minAge>
+          <maxAge>999</maxAge>
+          <validationProfiles/>
+        </vConfig>
+        <additionalIdatParameter/>
+        <consentTemplateConfig>
+          <questionList/>
+        </consentTemplateConfig>
+        <consentTemplateDomain>demo</consentTemplateDomain>
+        <consentTemplateFilter>study=demo</consentTemplateFilter>
+        <displayName>Demostudie</displayName>
+        <patientSignatureType>PATIENT_ONLY</patientSignatureType>
+        <isConsentMandatoryForAddPatient>true</isConsentMandatoryForAddPatient>
+        <mandatoryDispatcherEventForInclusion>demo.inclusion</mandatoryDispatcherEventForInclusion>
+        <showUploadConsentScanPage>true</showUploadConsentScanPage>
+        <showUploadConsentScanPageOgnlExpression>true</showUploadConsentScanPageOgnlExpression>
+        <displayableGenders>M,F,O</displayableGenders>
+        <tabletPrintMandatoryOgnlExpression>false</tabletPrintMandatoryOgnlExpression>
+        <tabletRequireSignaturePlaceOgnlExpression>false</tabletRequireSignaturePlaceOgnlExpression>
+        <allowFollowUps>false</allowFollowUps>
+        <revocationConfigList/>
+      </org.icmvc.ttp.dispatcher.common.config.study.StudyConfig>
+    </entry>
+  </studyConfigs>
+  <centreConfig/>
+  <revocationConfig/>
+  <additionalProperties/>
+  <validationMetaConfig>
+    <rules/>
+    <profiles/>
+  </validationMetaConfig>
+  <securityConfig>
+    <permissions>
+      <permission action="create" description="" identifier="create_requestPsnByPatient" object="requestPsnByPatient" type="simple"/>
+      <permission action="call" description="" identifier="call_requestPsnByPatient" object="requestPsnByPatient" type="simple"/>
+      <permission action="call" description="" identifier="call_updateIDAT" object="updateIDAT" type="simple"/>
+      <permission action="demo.consentStatus" description="" identifier="event.demo.consentStatus" object="event" type="simple"/>
+      <permission action="call" description="" identifier="call_requestPSN" object="requestPSN" type="simple"/>
+      <permission action="demo.requestPsn" description="" identifier="event.demo.requestPsn" object="event" type="simple"/>
+      <permission action="create" description="" identifier="create_updateIDAT" object="updateIDAT" type="simple"/>
+      <permission action="call" description="" identifier="call_addConsentByPatient" object="addConsentByPatient" type="simple"/>
+      <permission action="demo.updateIDAT" description="" identifier="event.demo.updateIDAT" object="event" type="simple"/>
+      <permission action="sendNotification" description="" identifier="call_sendNotification" object="TestResource" type="simple"/>
+      <permission action="create" description="" identifier="create_getConsentStatus" object="getConsentStatus" type="simple"/>
+      <permission action="create" description="" identifier="create_requestPSN" object="requestPSN" type="simple"/>
+      <permission action="demo.resolvePsn" description="" identifier="event.demo.resolvePsn" object="event" type="simple"/>
+      <permission action="create" description="" identifier="create_searchPatient" object="searchPatient" type="simple"/>
+      <permission action="demo.manage" description="" identifier="event.demo.manage" object="event" type="simple"/>
+      <permission action="create" description="" identifier="create_requestPatientByIdentifier" object="requestPatientByIdentifier" type="simple"/>
+      <permission action="create" description="" identifier="create_addConsentByPatient" object="addConsentByPatient" type="simple"/>
+      <permission action="create" description="" identifier="create_managePatient" object="managePatient" type="simple"/>
+      <permission action="create" description="" identifier="create_queryLegitimationStatus" object="queryLegitimationStatus" type="simple"/>
+      <permission action="call" description="" identifier="call_addPatient" object="addPatient" type="simple"/>
+      <permission action="create" description="" identifier="create_addPatientIdentifier" object="addPatientIdentifier" type="simple"/>
+      <permission action="demo.new-consent" description="" identifier="event.demo.new-consent" object="event" type="simple"/>
+      <permission action="call" description="" identifier="call_externalPatientMerge" object="externalPatientMerge" type="simple"/>
+      <permission action="call" description="" identifier="call_confirmRevocation" object="confirmRevocation" type="simple"/>
+      <permission action="demo.all" description="" identifier="event.demo.all" object="event" type="simple"/>
+      <permission action="call" description="" identifier="call_getConsentStatus" object="getConsentStatus" type="simple"/>
+      <permission action="call" description="" identifier="call_requestPatientByIdentifier" object="requestPatientByIdentifier" type="simple"/>
+      <permission action="create" description="" identifier="create_getConsentDocument" object="getConsentDocument" type="simple"/>
+      <permission action="call" description="" identifier="call_getConsentDocument" object="getConsentDocument" type="simple"/>
+      <permission action="demo.transferData" description="" identifier="event.demo.transferData" object="event" type="simple"/>
+      <permission action="demo.addScan" description="" identifier="event.demo.addScan" object="event" type="simple"/>
+      <permission action="create" description="" identifier="create_externalPatientMerge" object="externalPatientMerge" type="simple"/>
+      <permission action="create" description="" identifier="create_session" object="session" type="simple"/>
+      <permission action="call" description="" identifier="call_addPatientIdentifier" object="addPatientIdentifier" type="simple"/>
+      <permission action="call" description="" identifier="call_addConsent" object="addConsent" type="simple"/>
+      <permission action="demo.recruitment" description="" identifier="event.demo.recruitment" object="event" type="simple"/>
+      <permission action="create" description="" identifier="create_addConsent" object="addConsent" type="simple"/>
+      <permission action="call" description="" identifier="call_demoController" object="demoController" type="simple"/>
+      <permission action="create" description="" identifier="create_addConsentScan" object="addConsentScan" type="simple"/>
+      <permission action="create" description="" identifier="create_addPatient" object="addPatient" type="simple"/>
+      <permission action="call" description="" identifier="call_queryLegitimationStatus" object="queryLegitimationStatus" type="simple"/>
+      <permission action="call" description="" identifier="call_searchPatient" object="searchPatient" type="simple"/>
+      <permission action="demo.search" description="" identifier="event.demo.search" object="event" type="simple"/>
+      <permission action="call" description="" identifier="call_addConsentScan" object="addConsentScan" type="simple"/>
+      <permission action="call" description="" identifier="call_configResource" object="ConfigResource" type="simple"/>
+      <permission action="create" description="" identifier="create_confirmRevocation" object="confirmRevocation" type="simple"/>
+      <permission action="call" description="" identifier="call_managePatient" object="managePatient" type="simple"/>
+      <permission action="create" description="" identifier="create_token" object="token" type="simple"/>
+      <permission action="demo.addPatientIdentifier" description="" identifier="event.demo.addPatientIdentifier" object="event" type="simple"/>
+    </permissions>
+    <roles>
+      <role description="" identifier="lims">
+        <simplePermissions>
+          <simplePermission identifier="create_token"/>
+          <simplePermission identifier="create_requestPSN"/>
+          <simplePermission identifier="call_requestPSN"/>
+        </simplePermissions>
+      </role>
+      <role description="" identifier="admin">
+        <simplePermissions>
+          <simplePermission identifier="create_requestPsnByPatient"/>
+          <simplePermission identifier="call_updateIDAT"/>
+          <simplePermission identifier="call_requestPsnByPatient"/>
+          <simplePermission identifier="event.demo.consentStatus"/>
+          <simplePermission identifier="call_requestPSN"/>
+          <simplePermission identifier="event.demo.requestPsn"/>
+          <simplePermission identifier="create_updateIDAT"/>
+          <simplePermission identifier="call_addConsentByPatient"/>
+          <simplePermission identifier="call_sendNotification"/>
+          <simplePermission identifier="event.demo.updateIDAT"/>
+          <simplePermission identifier="create_getConsentStatus"/>
+          <simplePermission identifier="create_requestPSN"/>
+          <simplePermission identifier="event.demo.resolvePsn"/>
+          <simplePermission identifier="create_searchPatient"/>
+          <simplePermission identifier="event.demo.manage"/>
+          <simplePermission identifier="create_requestPatientByIdentifier"/>
+          <simplePermission identifier="create_addConsentByPatient"/>
+          <simplePermission identifier="create_managePatient"/>
+          <simplePermission identifier="create_queryLegitimationStatus"/>
+          <simplePermission identifier="call_addPatient"/>
+          <simplePermission identifier="create_addPatientIdentifier"/>
+          <simplePermission identifier="event.demo.new-consent"/>
+          <simplePermission identifier="call_externalPatientMerge"/>
+          <simplePermission identifier="call_confirmRevocation"/>
+          <simplePermission identifier="event.demo.all"/>
+          <simplePermission identifier="call_getConsentStatus"/>
+          <simplePermission identifier="call_requestPatientByIdentifier"/>
+          <simplePermission identifier="create_getConsentDocument"/>
+          <simplePermission identifier="call_getConsentDocument"/>
+          <simplePermission identifier="event.demo.transferData"/>
+          <simplePermission identifier="create_externalPatientMerge"/>
+          <simplePermission identifier="event.demo.addScan"/>
+          <simplePermission identifier="create_session"/>
+          <simplePermission identifier="call_addPatientIdentifier"/>
+          <simplePermission identifier="call_addConsent"/>
+          <simplePermission identifier="event.demo.recruitment"/>
+          <simplePermission identifier="call_demoController"/>
+          <simplePermission identifier="create_addConsent"/>
+          <simplePermission identifier="create_addConsentScan"/>
+          <simplePermission identifier="create_addPatient"/>
+          <simplePermission identifier="call_queryLegitimationStatus"/>
+          <simplePermission identifier="call_searchPatient"/>
+          <simplePermission identifier="event.demo.search"/>
+          <simplePermission identifier="call_addConsentScan"/>
+          <simplePermission identifier="call_configResource"/>
+          <simplePermission identifier="call_managePatient"/>
+          <simplePermission identifier="create_confirmRevocation"/>
+          <simplePermission identifier="create_token"/>
+          <simplePermission identifier="event.demo.addPatientIdentifier"/>
+        </simplePermissions>
+      </role>
+      <role description="Datenerfassung" identifier="mdat">
+        <simplePermissions>
+          <simplePermission identifier="create_addConsentScan"/>
+          <simplePermission identifier="create_addPatient"/>
+          <simplePermission identifier="create_addConsentByPatient"/>
+          <simplePermission identifier="call_searchPatient"/>
+          <simplePermission identifier="call_addConsentScan"/>
+          <simplePermission identifier="call_addPatient"/>
+          <simplePermission identifier="event.demo.addScan"/>
+          <simplePermission identifier="create_session"/>
+          <simplePermission identifier="call_addConsentByPatient"/>
+          <simplePermission identifier="call_addConsent"/>
+          <simplePermission identifier="create_token"/>
+          <simplePermission identifier="event.demo.new-consent"/>
+          <simplePermission identifier="event.demo.recruitment"/>
+          <simplePermission identifier="create_searchPatient"/>
+          <simplePermission identifier="event.demo.manage"/>
+          <simplePermission identifier="create_addConsent"/>
+        </simplePermissions>
+      </role>
+    </roles>
+    <actors>
+      <actor description="LIMS" identifier="lims">
+        <actorRoles>
+          <actorRole identifier="lims"/>
+        </actorRoles>
+      </actor>
+      <actor description="" identifier="admin">
+        <actorRoles>
+          <actorRole identifier="admin"/>
+        </actorRoles>
+      </actor>
+      <actor description="Datenerfassung" identifier="mdat">
+        <actorRoles>
+          <actorRole identifier="mdat"/>
+        </actorRoles>
+      </actor>
+    </actors>
+  </securityConfig>
+</org.icmvc.ttp.dispatcher.common.config.DispatcherConfig>

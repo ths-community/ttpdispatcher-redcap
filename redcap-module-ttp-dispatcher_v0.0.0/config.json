@@ -1,0 +1,208 @@
+{
+  "name": "TTP Dispatcher Module",
+  "namespace": "UKE\\TTPDispatcherModule",
+  "description": "This module integrates the Trusted Third Party tools (MOSAIC tools) from the University Medicine Greifswald into REDCap.",
+  "framework-version": 5,
+  "authors": [
+    {
+      "name": "Nils Dittberner",
+      "email": "Nils.Dittberner@interystems.com",
+      "institution": "Intersystems"
+    },{
+      "name": "Oliver Köckritz",
+      "email": "redcap@uke.de",
+      "institution": "University Medical Center Hamburg-Eppendorf"
+    },{
+      "name": "Johannes Wagner",
+      "email": "joh.wagner@uke.de",
+      "institution": "University Medical Center Hamburg-Eppendorf"
+    }
+  ],
+  "permissions": [
+    "redcap_every_page_top",
+    "redcap_save_record",
+    "redcap_survey_complete"
+  ],
+  "compatibility": {
+    "redcap-version-min": "10.0.0",
+    "php-version-min": "7.4.0"
+  },
+  "no-auth-pages": [
+    "notification_consumer",
+    "receiver_callback_consumer",
+    "receiver_consumer"
+  ],
+  "system-settings": [
+  ],
+  "project-settings": [
+    {
+      "key": "ttp-enabled",
+      "name": "<b>TTP Enabled</b>",
+      "type": "checkbox"
+    },
+    {
+      "key": "ttp-name",
+      "name": "<b>TTP Name</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-base-url",
+      "name": "<b>TTP Base URL</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-apikey",
+      "name": "<b>TTP API Key</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-target-id-type",
+      "name": "<b>TTP Target ID Type</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-study-id",
+      "name": "<b>TTP Study ID</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-study-name",
+      "name": "<b>TTP Study Name</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-policies-query",
+      "name": "<b>TTP Policies Query</b>",
+      "type": "json",
+      "required": true
+    },
+    {
+      "key": "ttp-policies-query-apikey",
+      "name": "<b>TTP Policies Query API Key</b>",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "ttp-use-secondary-pk",
+      "name": "<b>TTP Use Secondary Unique Field</b>",
+      "type": "checkbox"
+    },
+    {
+      "key": "ttp-secondary-pk-field",
+      "name": "<b>TTP Secondary Unique Value Field</b>",
+      "type": "field-list",
+      "required": true,
+      "branchingLogic": {
+        "field": "ttp-use-secondary-pk",
+        "value": "true"
+      }
+    },
+    {
+      "key": "ttp-users",
+      "name": "<b>TTP Users</b>",
+      "type": "sub_settings",
+      "repeatable": true,
+      "sub_settings": [
+        {
+          "key": "ttp-user-enabled",
+          "name": "<b>TTP User Enabled</b>",
+          "type": "checkbox"
+        },
+        {
+          "key": "ttp-user",
+          "name": "<b>TTP User</b>",
+          "type": "user-list",
+          "autocomplete": true,
+          "required": true
+        },
+        {
+          "key": "ttp-user-function-search-patient",
+          "name": "<b>TTP Function Search Patient</b>",
+          "type": "checkbox"
+        },
+        {
+          "key": "ttp-user-function-manage-patient",
+          "name": "<b>TTP Function Manage Patient</b>",
+          "type": "checkbox"
+        },
+        {
+          "key": "ttp-user-function-add-patient",
+          "name": "<b>TTP Function Add Patient</b>",
+          "type": "checkbox"
+        },
+        {
+          "key": "ttp-user-function-request-patient-by-identifier",
+          "name": "<b>TTP XFunction Request Patient By Identifier</b>",
+          "type": "checkbox"
+        }
+      ]
+    },
+    {
+      "key": "ttp-notification-consumer-enabled",
+      "name": "<b>TTP Notification Consumer Enabled</b><br>The TTP Notification Consumer is used for receiving dispatcher notifications and create records",
+      "type": "checkbox"
+    },
+    {
+      "key": "ttp-sync-receiver-enabled",
+      "name": "<b>TTP Sync Receiver Enable</b>",
+      "type": "checkbox"
+    },
+    {
+      "key": "ttp-sync-provider-enabled",
+      "name": "<b>TTP Sync Provider Enable</b>",
+      "type": "checkbox"
+    },
+    {
+      "key": "ttp-sync-provider-target",
+      "name": "<b>TTP Sync Provider Target</b><br>The URL of the TTP Sync Receiver endpoint",
+      "type": "string",
+      "required": true,
+      "branchingLogic": {
+        "field": "ttp-sync-provider-enabled",
+        "value": "true"
+      }
+    }
+  ],
+  "links": {
+    "control-center": [
+    ],
+    "project": [
+      {
+        "name": "TTP_ Dispatcher Logging",
+        "url": "ttp-dispatcher-logging.php",
+        "icon": "fas fa-clipboard-list",
+        "show-header-and-footer": true
+      },
+      {
+        "name": "TTP - Add Patient",
+        "url": "ttp_add_patient.php",
+        "icon": "fas fa-user-plus",
+        "show-header-and-footer": true
+      },
+      {
+        "name": "TTP - Search Patient",
+        "url": "ttp_search_patient.php",
+        "icon": "fas fa-search",
+        "show-header-and-footer": true
+      },
+      {
+        "name": "TTP - Manage Patient",
+        "url": "ttp_manage_patient.php",
+        "icon": "fas fa-user-edit",
+        "show-header-and-footer": true
+      },
+      {
+        "name": "TTPX - Request Patient By Identifier",
+        "url": "ttp_request_patient_by_identifier.php",
+        "icon": "fas fa-address-book",
+        "show-header-and-footer": true
+      }
+    ]
+  }
+}
