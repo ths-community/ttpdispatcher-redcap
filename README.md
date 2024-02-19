@@ -1,6 +1,6 @@
-# REDCap External Module (EM) to integrate the MOSAIC-Tools via TTP-Dispatcher
+# REDCap External Module (EM) to integrate the TTP-Tools of the University Medicine Greifswald via TTP-Dispatcher
 
-The [TTP-Dispatcher](https://www.ths-greifswald.de/forscher/dispatcher/) offers workflow-management for the basic functionalities of the [MOSAIC-Tools](https://www.ths-greifswald.de/projekte/mosaic-projekt/) - including identity management (E-PIX), pseudonym creation and administration (gPas) and informed consent management (gICS).
+The [TTP-Dispatcher](https://www.ths-greifswald.de/forscher/dispatcher/) offers workflow-management for the basic functionalities of the [TTP-Tools of the University Medicine Greifswald](https://www.ths-greifswald.de/projekte/mosaic-projekt/) - including record linkage/identity management (E-PIX), pseudonym creation and administration (gPAS) and informed consent management (gICS).
 
 This REDCap EM utilizes the dispatchers ability to deliver general functions of a Trusted Third Party (TTP) implemented in the TTP-Dispatcher as forms/iframes and via REST-API to the users directly inside REDCap. 
 It allows Users e.g. to add, update or search patient records without handling any identifiying data inside the REDCap instance. 
