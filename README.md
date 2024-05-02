@@ -252,7 +252,7 @@ The (changed) full configuration file can be found [here](dispatcher.config.redc
 
 ### Additional Permissions, Roles and Actors
 
-Following additional Changes can be included (currently not part of the provided config file) to add more specific roles and actors for the integration functionalities. To fully utilize this, the API-Keys configured in the [module configuration](### System Configuration) have to be changed accordingly and also the `<systemConfigurations>` within the dispatcher configuration would have to be adapted to reflect the new keys.
+Following additional Changes can be included (currently not part of the provided config file) to add more specific roles and actors for the integration functionalities. To fully utilize this, the API-Keys configured in the [module configuration](#system-configuration) have to be changed accordingly and also the `<systemConfigurations>` within the dispatcher configuration would have to be adapted to reflect the new keys.
 
 ```xml
 ...
