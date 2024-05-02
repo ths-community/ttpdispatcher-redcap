@@ -249,3 +249,85 @@ The (changed) full configuration file can be found [here](dispatcher.config.redc
     <apiKey>admin</apiKey>
 </notificationConsumer>
 ```
+
+### Additional Permissions, Roles and Actors
+
+Following additional Changes can be included (currently not part of the provided config file) to add more specific roles and actors for the integration functionalities. To fully utilize this, the API-Keys configured in the [module configuration](### System Configuration) have to be changed accordingly and also the `<systemConfigurations>` within the dispatcher configuration would have to be adapted to reflect the new keys.
+
+```xml
+...
+<permissions>
+      <permission action="create" description="" identifier="create_queryPolicies" object="queryPolicies" type="simple"/>
+      <permission action="call" description="" identifier="call_queryPolicies" object="queryPolicies" type="simple"/>
+...
+```
+```xml
+...
+<roles>
+    <role description="Session and Token Request" identifier="createSessionAndToken"> 
+      <simplePermissions> 
+        <simplePermission identifier="create_session"/> 
+        <simplePermission identifier="create_token"/> 
+      </simplePermissions> 
+    </role> 
+    <role description="Add and Search Patients" identifier="addAndSearchPatient"> 
+      <simplePermissions> 
+        <simplePermission identifier="event.demo.recruitment"/> 
+        <simplePermission identifier="event.demo.search"/> 
+        <simplePermission identifier="create_addPatient"/> 
+        <simplePermission identifier="create_searchPatient"/> 
+      </simplePermissions> 
+    </role> 
+    <role description="Manage Patients" identifier="managePatient"> 
+      <simplePermissions> 
+        <simplePermission identifier="event.demo.manage"/> 
+        <simplePermission identifier="create_managePatient"/> 
+        <simplePermission identifier="call_managePatient"/> 
+      </simplePermissions> 
+    </role> 
+    <role description="Query Consent Policies" identifier="queryPolicies"> 
+      <simplePermissions> 
+        <simplePermission identifier="event.demo.transferData"/> 
+        <simplePermission identifier="call_queryPolicies"/> 
+        <simplePermission identifier="create_queryPolicies"/> 
+        <simplePermission identifier="create_queryLegitimationStatus"/> 
+        <simplePermission identifier="call_queryLegitimationStatus"/> 
+      </simplePermissions> 
+    </role> 
+    <role description="Request Patient IDAT by PSN" identifier="requestPatientByIdentifier"> 
+      <simplePermissions> 
+        <simplePermission identifier="event.demo.resolvePsn"/> 
+        <simplePermission identifier="call_requestPatientByIdentifier"/> 
+        <simplePermission identifier="create_requestPatientByIdentifier"/> 
+      </simplePermissions> 
+    </role> 
+    <role description="" identifier="requestPsn"> 
+      <simplePermissions> 
+        <simplePermission identifier="event.demo.requestPsn"/> 
+        <simplePermission identifier="call_requestPSN"/> 
+        <simplePermission identifier="create_requestPSN"/> 
+      </simplePermissions> 
+    </role> 
+...
+'''
+'''xml
+...
+  <actors> 
+    <actor description="technical_site_admin" identifier="[TTP API Key]"> 
+      <actorRoles> 
+        <actorRole identifier="createSessionAndToken"/> 
+        <actorRole identifier="addAndSearchPatient"/> 
+        <actorRole identifier="managePatient"/> 
+        <actorRole identifier="queryPolicies"/> 
+        <actorRole identifier="requestPatientByIdentifier"/> 
+        <actorRole identifier="requestPsn"/> 
+      </actorRoles> 
+    </actor> 
+    <actor description="policiy_token_read" identifier="[TTP Policy Query API Key]"> 
+      <actorRoles> 
+        <actorRole identifier="createSessionAndToken"/> 
+        <actorRole identifier="queryPolicies"/> 
+      </actorRoles> 
+    </actor> 
+...
+```
